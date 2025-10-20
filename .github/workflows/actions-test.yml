@@ -1,12 +1,31 @@
-name: GitHub Actions Test
+name: Event Data Test
 
-on: [push]
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
 
 jobs:
-  Explore-GitHub-Actions:
+  update:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This is the GitHub Actions test."
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # checkout the repository content
 
-      - name: "test2"
-        run: echo "This is the GitHub Actions test2."
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10" # install the python version needed
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install bcedd
+
+      - name: Run Script
+        run: python -m bcedd -c jp kr en tw
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4 # commit changes
+        with:
+          commit_message: "update: event data"
