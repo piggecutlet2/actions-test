@@ -1,0 +1,12 @@
+name: GitHub Actions Test
+
+on: [push]
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is the GitHub Actions test."
+
+      - name: "test2"
+        run: echo "This is the GitHub Actions test2."
