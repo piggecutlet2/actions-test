@@ -24,7 +24,7 @@ jobs:
           python -m pip install bcedd
 
       - name: Run Script
-        run: python -m bcedd -c jp kr en tw
+        run: python -m bcedd -c jp kr en tw -o .
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4 # commit changes
